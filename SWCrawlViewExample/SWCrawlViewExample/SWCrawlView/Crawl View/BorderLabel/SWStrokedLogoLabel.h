@@ -9,6 +9,9 @@
 
 @interface SWStrokedLogoLabel : UILabel
 
+/**
+ *  This class is used for the main logo.
+ */
 @property IBInspectable UIColor *strokeColor;
 @property IBInspectable NSInteger strokeWidth;
 
