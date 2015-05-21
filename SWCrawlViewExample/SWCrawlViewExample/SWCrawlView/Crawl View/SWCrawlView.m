@@ -93,7 +93,7 @@ const CGFloat logoStrokeSizeForFontPointSizeMultiplier = .165;
                                 options:nil];
 
     [self.xibView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.xibView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"starBG3.png"]]];
+    [self.xibView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"starBg.png"]]];
     [self addSubview:self.xibView];
 
     NSDictionary *views = NSDictionaryOfVariableBindings(_xibView);
