@@ -1,8 +1,8 @@
 # SWCrawlView
-<img src="http://i.imgur.com/eJHIeXF.png">
-<img src="http://i.imgur.com/XgYsfbh.png">
 
 This control provides a realistic and interactive version of the original Theatrical Crawl for use in any app. The control is fully customizable, fonts, colors, text, etc can all be modified. It supports all iOS Devices (not the watch yet, sorry.), and both orientations. Very specific implementations may require source code tweaking.
+
+<img src="http://i.imgur.com/eJHIeXF.png" width="280"> <img src="http://i.imgur.com/XgYsfbh.png" width="280">
 
 #### Background
 A long time ago, in a city far, far away (Chicago, I miss you), I built an app that let you create and export HD crawl videos and could mux it with your own music files. The app has fallen into heavy neglect, and hasn't been updated since 2013. It barely works right now, but if you're curious, you can check it out [here.](https://itunes.apple.com/us/app/star-wars-crawl-creator/id494406923?mt=8) 
