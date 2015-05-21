@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="StarJediBig.ttf">
+            <string>StarJedi</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SWCrawlView">
+            <connections>
+                <outlet property="controlView" destination="vm4-Zd-iP0" id="I88-t2-FkP"/>
+                <outlet property="crawlTextTopSpacingConstraint" destination="gHn-yG-gsS" id="Isq-mZ-MH9"/>
+                <outlet property="crawlTextView" destination="7iZ-dz-rYx" id="sZf-eF-s23"/>
+                <outlet property="logoHeightConstraint" destination="gm3-SA-eIR" id="Ybm-cy-HCd"/>
+                <outlet property="logoLabel" destination="k4I-IR-aQc" id="KDR-Wj-eEI"/>
+                <outlet property="logoWidthConstraint" destination="9qs-6M-Opa" id="g9X-Wa-Qv9"/>
+                <outlet property="maskImageView" destination="DkS-qa-WJM" id="tWz-q2-YN5"/>
+                <outlet property="screenSizeScaleView" destination="iN0-l3-epB" id="UYl-ld-ggv"/>
+                <outlet property="scrollView" destination="9jX-2G-t41" id="vfG-Os-WU0"/>
+                <outlet property="xibView" destination="dMV-Im-dkF" id="zPa-yR-mgn"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="dMV-Im-dkF">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB" userLabel="Scalable Crawl View">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sgX-zE-pxU" userLabel="Stopper View (For Z Layering)">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I5w-iF-sX0" userLabel="Anchor View for Body Text Width">
+                            <rect key="frame" x="163" y="-600" width="274" height="1"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="hI4-zz-Fgw"/>
+                            </constraints>
+                        </view>
+                        <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9jX-2G-t41" userLabel="Scrolling Crawl View">
+                            <rect key="frame" x="163" y="-600" width="274" height="1200"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iZ-dz-rYx" userLabel="Crawl Body View">
+                                    <rect key="frame" x="0.0" y="1400" width="274" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="7iZ-dz-rYx" secondAttribute="trailing" id="9o3-qB-cVT"/>
+                                <constraint firstAttribute="bottom" secondItem="7iZ-dz-rYx" secondAttribute="bottom" constant="200" id="JkI-JD-58J"/>
+                                <constraint firstItem="7iZ-dz-rYx" firstAttribute="leading" secondItem="9jX-2G-t41" secondAttribute="leading" id="NtD-x7-WRy"/>
+                                <constraint firstItem="7iZ-dz-rYx" firstAttribute="top" secondItem="9jX-2G-t41" secondAttribute="top" constant="1400" id="gHn-yG-gsS"/>
+                                <constraint firstAttribute="width" constant="274" id="tGE-f9-Ysm"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="peV-TO-uG8"/>
+                            </connections>
+                        </scrollView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mask.png" translatesAutoresizingMaskIntoConstraints="NO" id="DkS-qa-WJM" userLabel="Mask View">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="736" id="5vF-Nn-yZw"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="5vF-Nn-yZw"/>
+                                </mask>
+                            </variation>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000007" translatesAutoresizingMaskIntoConstraints="NO" id="k4I-IR-aQc" userLabel="Logo Text" customClass="SWStrokedLogoLabel">
+                            <rect key="frame" x="-100" y="-90" width="800" height="820"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="600" id="9qs-6M-Opa"/>
+                                <constraint firstAttribute="height" constant="500" id="gm3-SA-eIR"/>
+                                <constraint firstAttribute="height" constant="820" id="qDO-g6-mOj"/>
+                            </constraints>
+                            <string key="text">STAR
+WARS</string>
+                            <fontDescription key="fontDescription" name="StarJedi" family="Star Jedi" pointSize="260"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
+                                    <integer key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="9qs-6M-Opa"/>
+                                    <exclude reference="gm3-SA-eIR"/>
+                                </mask>
+                            </variation>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="k4I-IR-aQc" secondAttribute="bottom" constant="-100" id="4U6-N0-QJp"/>
+                        <constraint firstItem="I5w-iF-sX0" firstAttribute="centerX" secondItem="9jX-2G-t41" secondAttribute="centerX" id="73x-WU-slP"/>
+                        <constraint firstItem="sgX-zE-pxU" firstAttribute="height" secondItem="DkS-qa-WJM" secondAttribute="height" multiplier="2:1" id="A24-59-X8T"/>
+                        <constraint firstItem="DkS-qa-WJM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="EnI-rY-sEM"/>
+                        <constraint firstAttribute="centerY" secondItem="k4I-IR-aQc" secondAttribute="centerY" constant="-20" id="F4Y-zG-Ot4"/>
+                        <constraint firstAttribute="trailing" secondItem="DkS-qa-WJM" secondAttribute="trailing" id="GS1-RX-uBX"/>
+                        <constraint firstItem="k4I-IR-aQc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-120" id="I56-yE-SsA"/>
+                        <constraint firstItem="sgX-zE-pxU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="J8v-nz-LZb"/>
+                        <constraint firstItem="I5w-iF-sX0" firstAttribute="top" secondItem="9jX-2G-t41" secondAttribute="top" id="Jdc-8g-UCC"/>
+                        <constraint firstItem="9jX-2G-t41" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-600" id="K3p-75-VHs"/>
+                        <constraint firstItem="sgX-zE-pxU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="KLv-To-1Qa"/>
+                        <constraint firstItem="k4I-IR-aQc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-100" id="Kro-Hq-VDh"/>
+                        <constraint firstAttribute="centerY" secondItem="k4I-IR-aQc" secondAttribute="centerY" constant="-20" id="QT4-pK-2gc"/>
+                        <constraint firstItem="DkS-qa-WJM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="W6l-H7-Xmq"/>
+                        <constraint firstAttribute="bottom" secondItem="sgX-zE-pxU" secondAttribute="bottom" id="atG-e2-glE"/>
+                        <constraint firstItem="7iZ-dz-rYx" firstAttribute="width" secondItem="I5w-iF-sX0" secondAttribute="width" id="gjv-ja-Jyo"/>
+                        <constraint firstAttribute="centerX" secondItem="9jX-2G-t41" secondAttribute="centerX" id="kEO-SO-SZj"/>
+                        <constraint firstAttribute="trailing" secondItem="k4I-IR-aQc" secondAttribute="trailing" constant="-100" id="kaF-Ge-d2a"/>
+                        <constraint firstAttribute="trailing" secondItem="sgX-zE-pxU" secondAttribute="trailing" id="naO-hd-qWh"/>
+                        <constraint firstAttribute="bottom" secondItem="9jX-2G-t41" secondAttribute="bottom" id="rzO-7h-83D"/>
+                        <constraint firstItem="I5w-iF-sX0" firstAttribute="width" secondItem="9jX-2G-t41" secondAttribute="width" id="yzS-Ku-EpY"/>
+                        <constraint firstAttribute="centerX" secondItem="k4I-IR-aQc" secondAttribute="centerX" id="zid-ze-TpI"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="4U6-N0-QJp"/>
+                            <exclude reference="F4Y-zG-Ot4"/>
+                            <exclude reference="I56-yE-SsA"/>
+                        </mask>
+                    </variation>
+                </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vm4-Zd-iP0" userLabel="Controller Scrollview">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="iN0-l3-epB" firstAttribute="leading" secondItem="dMV-Im-dkF" secondAttribute="leading" id="7S1-zk-BeA"/>
+                <constraint firstAttribute="trailing" secondItem="vm4-Zd-iP0" secondAttribute="trailing" id="Cvb-Mo-HEi"/>
+                <constraint firstItem="iN0-l3-epB" firstAttribute="top" secondItem="dMV-Im-dkF" secondAttribute="top" id="KSz-Hy-YF5"/>
+                <constraint firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="Sio-7K-GRW"/>
+                <constraint firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="Z0d-dU-x3X"/>
+                <constraint firstItem="vm4-Zd-iP0" firstAttribute="top" secondItem="dMV-Im-dkF" secondAttribute="top" id="eeW-vG-gFw"/>
+                <constraint firstItem="vm4-Zd-iP0" firstAttribute="leading" secondItem="dMV-Im-dkF" secondAttribute="leading" id="fAe-Yv-cU3"/>
+                <constraint firstAttribute="bottom" secondItem="vm4-Zd-iP0" secondAttribute="bottom" id="hDW-9e-2HT"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="mask.png" width="768" height="1024"/>
+    </resources>
+</document>
