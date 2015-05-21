@@ -1,5 +1,6 @@
 # SWCrawlView
-<img src="http://i.imgur.com/eJHIeXF.png" width="400"><img src="http://i.imgur.com/XgYsfbh.png" width="400">
+<img src="http://i.imgur.com/eJHIeXF.png">
+<img src="http://i.imgur.com/XgYsfbh.png">
 
 This control provides a realistic and interactive version of the original Theatrical Crawl for use in any app. The control is fully customizable, fonts, colors, text, etc can all be modified. It supports all iOS Devices (not the watch yet, sorry.), and both orientations. Very specific implementations may require source code tweaking.
 
