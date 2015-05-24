@@ -24,30 +24,13 @@
     SWCrawl *crawl = [SWCrawl new];
 
     //Funny casing to use the characters in SW Jedi font that we need.
-    [crawl setLogoText:@"STaR\nwaRS"];
+    [crawl setLogoText:@"Crawl\nWars"];
 
-    [crawl setEpisodeNumberText:@"Episode V"];
+    [crawl setEpisodeNumberText:@"Episode 6+"];
 
     //Lowercase string because SW Title font has a couple funny characters in it. Check out the font.
-    [crawl setEpisodeTitleText:@"THE EMPIRE STRIKES BACK".lowercaseString];
-    [crawl setBodyText:@"It is a dark time for the "
-     "Rebellion. Although the Death "
-     "Star has been destroyed, "
-     "Imperial troops have driven the "
-     "Rebel forces from their hidden "
-     "base and pursued them across "
-     "the galaxy.\n\n"
-     "Evading the dreaded Imperial "
-     "Starfleet, a group of freedom "
-     "fighters led by Luke Skywalker "
-     "has established a new secret "
-     "base on the remote ice world "
-     "of Hoth.\n\n"
-     "The evil lord Darth Vader, "
-     "obsessed with finding young "
-     "Skywalker, has dispatched "
-     "thousands of remote probes into "
-     "the far reaches of space.... "];
+    [crawl setEpisodeTitleText:@"Lorem Ipsum Strikes Back".lowercaseString];
+    [crawl setBodyText:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."];
 
     [self.crawlView updateTextViaCrawl:crawl];
 }
