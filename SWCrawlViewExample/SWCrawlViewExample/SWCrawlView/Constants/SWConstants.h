@@ -17,7 +17,10 @@
  *  Also, the StarJedi font that's being used seems to have some glyph sizing issues. 
  *  I've attempted to modify the font file to clean it up, but you may notice it act strangely.
  */
+
 @interface SWConstants : NSObject
+
+UIColor* UIColorFromRGB(unsigned int rgbValue) ;
 
 + (UIColor *)starWarsLogoColor;
 + (UIFont *)starWarsLogoFont:(NSInteger)size;
