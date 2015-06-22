@@ -90,4 +90,9 @@
 @property (nonatomic) UIColor *episodeNumberColor;
 @property (nonatomic) UIColor *bodyColor;
 
+@property (readonly) BOOL isAnimating;
+
+- (void)scrollOutWithDuration:(CGFloat)duration
+                   completion:(void(^)(void))completion;
+
 @end

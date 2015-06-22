@@ -12,7 +12,7 @@
 #import <UIKit/UIKit.h>
 
 #ifndef UIInterfaceIdiomIsPad
-    #define UIInterfaceIdiomIsPad() (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define UIInterfaceIdiomIsPad() (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #endif
 
 const CGFloat logoStrokeSizeForFontPointSizeMultiplier = .165;
@@ -34,6 +34,8 @@ const CGFloat logoStrokeSizeForFontPointSizeMultiplier = .165;
 @property (weak) IBOutlet NSLayoutConstraint *logoWidthConstraint;
 @property (weak) IBOutlet NSLayoutConstraint *logoHeightConstraint;
 @property (weak) IBOutlet UILabel *titleLabel;
+
+@property (readwrite) BOOL isAnimating;
 
 @property SWCrawl *crawl;
 
@@ -170,18 +172,18 @@ const CGFloat logoStrokeSizeForFontPointSizeMultiplier = .165;
 
 - (void)setLogoText:(NSString *)logoText
 {
-
     [self.logoLabel setStrokeColor:self.crawl.logoStrokeColor];
     [self.logoLabel setFont:self.crawl.logoFont];
     [self.logoLabel setText:logoText];
     [self.logoLabel setStrokeWidth:self.crawl.logoFont.pointSize * logoStrokeSizeForFontPointSizeMultiplier];
+    [self.crawl setLogoText:logoText];
 }
 
 - (void)setLogoFont:(UIFont *)logoFont
 {
     if (logoFont) {
         _logoFont = logoFont;
-    
+
         self.crawl.logoFont = logoFont;
         [self updateCrawlingText];
     }
@@ -191,7 +193,7 @@ const CGFloat logoStrokeSizeForFontPointSizeMultiplier = .165;
 {
     if (bodyFont) {
         _bodyFont = bodyFont;
-    
+
         self.crawl.bodyFont = bodyFont;
         [self updateCrawlingText];
     }
@@ -261,17 +263,19 @@ const CGFloat logoStrokeSizeForFontPointSizeMultiplier = .165;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGFloat distanceFromVisible = (scrollView.contentOffset.y * 2) + CGRectGetHeight(self.frame);
-    CGFloat logoScaleTransformValue = (1.0 - (distanceFromVisible / self.crawlTextTopSpacingConstraint.constant)) *
-                                        [self logoScaleForScreenSize];
+    if (!self.isAnimating) {
+        CGFloat distanceFromVisible = (scrollView.contentOffset.y * 2) + CGRectGetHeight(self.frame);
+        CGFloat logoScaleTransformValue = (1.0 - (distanceFromVisible / self.crawlTextTopSpacingConstraint.constant)) *
+        [self logoScaleForScreenSize];
 
-    [self.logoLabel setHidden:(logoScaleTransformValue <= 0)];
+        [self.logoLabel setHidden:(logoScaleTransformValue <= 0)];
 
-    if (logoScaleTransformValue > 0) {
-        CGAffineTransform scaleTransform = CGAffineTransformMakeScale(logoScaleTransformValue,
-                                                                      logoScaleTransformValue);
+        if (logoScaleTransformValue > 0) {
+            CGAffineTransform scaleTransform = CGAffineTransformMakeScale(logoScaleTransformValue,
+                                                                          logoScaleTransformValue);
 
-        [self.logoLabel setTransform:scaleTransform];
+            [self.logoLabel setTransform:scaleTransform];
+        }
     }
 }
 
@@ -409,6 +413,44 @@ static int kObservingContentOffsetChangesContext;
         scaleSize = UIInterfaceIdiomIsPad() ? 3.0 : 2.5;
     }
     return scaleSize;
+}
+
+- (void)redisplayAfterScrollOut
+{
+    [self.scrollView setAlpha:1];
+    [self.logoLabel setAlpha:1];
+    [self.controlView setContentOffset:CGPointMake(0, 0)];
+}
+
+- (void)scrollOutWithDuration:(CGFloat)duration
+                   completion:(void(^)(void))completion;
+{
+    self.isAnimating = YES;
+    CGFloat delay = 0.0;
+    CGFloat visibleTextOffset = (self.crawlTextTopSpacingConstraint.constant - CGRectGetHeight(self.bounds));
+    if (self.scrollView.contentOffset.y < visibleTextOffset) {
+        CGFloat distanceToGo = visibleTextOffset - self.scrollView.contentOffset.y;
+        CGFloat percentageOfWholeDistance = distanceToGo / self.scrollView.contentSize.height;
+        delay = duration * percentageOfWholeDistance;
+
+        [UIView animateWithDuration:delay animations:^{
+            [self.logoLabel setTransform:CGAffineTransformMakeScale(.001, .001)];
+        }];
+    }
+
+    [UIView animateWithDuration:duration
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         [self.controlView setContentOffset:CGPointMake(0, (self.controlView.contentSize.height))];
+                     } completion:^(BOOL finished) {
+                         if (completion) {
+                             completion();
+                         }
+                         self.isAnimating = NO;
+                         [self.scrollView setAlpha:0];
+                         [self.logoLabel setAlpha:0];
+                     }];
 }
 
 @end

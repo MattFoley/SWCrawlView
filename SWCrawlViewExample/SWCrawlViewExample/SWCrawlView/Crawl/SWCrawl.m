@@ -11,6 +11,32 @@
 
 @implementation SWCrawl
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    SWCrawl *newCrawl = [[[self class] allocWithZone:zone] init];
+
+    if (newCrawl) {
+        newCrawl.introText = self.introText;
+        newCrawl.logoText = self.logoText;
+        newCrawl.episodeNumberText = self.episodeNumberText;
+        newCrawl.episodeTitleText = self.episodeTitleText;
+        newCrawl.bodyText = self.bodyText;
+
+        newCrawl.logoFont = self.logoFont;
+        newCrawl.episodeTitleFont = self.episodeTitleFont;
+        newCrawl.episodeNumberFont = self.episodeNumberFont;
+        newCrawl.bodyFont = self.bodyFont;
+
+        newCrawl.logoStrokeColor = self.logoStrokeColor;
+        newCrawl.episodeTitleColor = self.episodeTitleColor;
+        newCrawl.episodeNumberColor = self.episodeNumberColor;
+        newCrawl.bodyColor = self.bodyColor;
+    }
+
+    return newCrawl;
+}
+
+
 - (NSAttributedString *)composedCrawlString
 {
     NSMutableAttributedString *fullCrawlString = [NSMutableAttributedString new];
