@@ -92,6 +92,7 @@
 
 @property (readonly) BOOL isAnimating;
 
+- (void)redisplayAfterScrollOut;
 - (void)scrollOutWithDuration:(CGFloat)duration
                    completion:(void(^)(void))completion;
 

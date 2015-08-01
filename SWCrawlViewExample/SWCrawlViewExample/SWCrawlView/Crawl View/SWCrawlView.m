@@ -417,9 +417,11 @@ static int kObservingContentOffsetChangesContext;
 
 - (void)redisplayAfterScrollOut
 {
-    [self.scrollView setAlpha:1];
-    [self.logoLabel setAlpha:1];
-    [self.controlView setContentOffset:CGPointMake(0, 0)];
+    [UIView animateWithDuration:1.0 animations:^{
+        [self.scrollView setAlpha:1];
+        [self.logoLabel setAlpha:1];
+        [self.controlView setContentOffset:CGPointMake(0, 0)];
+    }];
 }
 
 - (void)scrollOutWithDuration:(CGFloat)duration
