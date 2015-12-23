@@ -31,5 +31,6 @@
 @property UIColor *bodyColor;
 
 - (NSAttributedString *)composedCrawlString;
++ (SWCrawl *)defaultCrawl;
 
 @end

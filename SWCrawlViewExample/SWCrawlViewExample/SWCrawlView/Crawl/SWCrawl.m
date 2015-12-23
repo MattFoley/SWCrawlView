@@ -8,8 +8,26 @@
 
 #import "SWCrawl.h"
 #import <UIKit/UIKit.h>
+#import "SWConstants.h"
 
 @implementation SWCrawl
+
++ (SWCrawl *)defaultCrawl
+{
+    SWCrawl *crawl = [SWCrawl new];
+
+    crawl.logoStrokeColor = [SWConstants starWarsLogoColor];
+    crawl.episodeNumberColor = [SWConstants crawlTextColor];
+    crawl.episodeTitleColor = [SWConstants crawlTextColor];
+    crawl.bodyColor = [SWConstants crawlTextColor];
+
+    crawl.logoFont = [SWConstants starWarsLogoFont:UIInterfaceIdiomIsPad() ? 140 : 48];
+    crawl.episodeNumberFont = [SWConstants episodeNumberFont:20];
+    crawl.episodeTitleFont = [SWConstants episodeTitleFont:40];
+    crawl.bodyFont = [SWConstants bodyTextFont:20];
+
+    return crawl;
+}
 
 - (id)copyWithZone:(NSZone *)zone
 {
