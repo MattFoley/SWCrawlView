@@ -20,7 +20,9 @@
     crawl.episodeNumberColor = [SWConstants crawlTextColor];
     crawl.episodeTitleColor = [SWConstants crawlTextColor];
     crawl.bodyColor = [SWConstants crawlTextColor];
-
+    crawl.introTextColor = [SWConstants introTextColor];
+    crawl.introBackgroundColor = [SWConstants introBackgroundColor];
+    crawl.introFont = [SWConstants introTextFont:20];
     crawl.logoFont = [SWConstants starWarsLogoFont:UIInterfaceIdiomIsPad() ? 140 : 48];
     crawl.episodeNumberFont = [SWConstants episodeNumberFont:20];
     crawl.episodeTitleFont = [SWConstants episodeTitleFont:40];
@@ -40,15 +42,20 @@
         newCrawl.episodeTitleText = self.episodeTitleText;
         newCrawl.bodyText = self.bodyText;
 
+        newCrawl.introFont = self.introFont;
         newCrawl.logoFont = self.logoFont;
         newCrawl.episodeTitleFont = self.episodeTitleFont;
         newCrawl.episodeNumberFont = self.episodeNumberFont;
         newCrawl.bodyFont = self.bodyFont;
 
+
+        newCrawl.introTextColor = self.introTextColor;
         newCrawl.logoStrokeColor = self.logoStrokeColor;
         newCrawl.episodeTitleColor = self.episodeTitleColor;
         newCrawl.episodeNumberColor = self.episodeNumberColor;
         newCrawl.bodyColor = self.bodyColor;
+
+        newCrawl.introBackgroundColor = self.introBackgroundColor;
     }
 
     return newCrawl;

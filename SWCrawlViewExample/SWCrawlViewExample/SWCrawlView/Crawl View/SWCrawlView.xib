@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -32,6 +33,22 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB" userLabel="Scalable Crawl View">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WvS-FN-ccV">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWJ-jK-RH0">
+                                    <rect key="frame" x="279" y="290" width="42" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="EWJ-jK-RH0" firstAttribute="centerX" secondItem="WvS-FN-ccV" secondAttribute="centerX" id="XwH-rI-z8K"/>
+                                <constraint firstItem="EWJ-jK-RH0" firstAttribute="centerY" secondItem="WvS-FN-ccV" secondAttribute="centerY" id="kRA-In-myn"/>
+                            </constraints>
+                        </view>
                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sgX-zE-pxU" userLabel="Stopper View (For Z Layering)">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         </imageView>
@@ -46,7 +63,7 @@
                             <rect key="frame" x="163" y="-600" width="274" height="1200"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iZ-dz-rYx" userLabel="Crawl Body View">
-                                    <rect key="frame" x="0.0" y="1400" width="274" height="21"/>
+                                    <rect key="frame" x="0.0" y="1400" width="274" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -103,6 +120,7 @@ WARS</string>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="k4I-IR-aQc" secondAttribute="bottom" constant="-100" id="4U6-N0-QJp"/>
+                        <constraint firstItem="WvS-FN-ccV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6qz-uf-FUw"/>
                         <constraint firstItem="I5w-iF-sX0" firstAttribute="centerX" secondItem="9jX-2G-t41" secondAttribute="centerX" id="73x-WU-slP"/>
                         <constraint firstItem="sgX-zE-pxU" firstAttribute="height" secondItem="DkS-qa-WJM" secondAttribute="height" multiplier="2:1" id="A24-59-X8T"/>
                         <constraint firstItem="DkS-qa-WJM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="EnI-rY-sEM"/>
@@ -115,9 +133,12 @@ WARS</string>
                         <constraint firstItem="sgX-zE-pxU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="KLv-To-1Qa"/>
                         <constraint firstItem="k4I-IR-aQc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-100" id="Kro-Hq-VDh"/>
                         <constraint firstAttribute="centerY" secondItem="k4I-IR-aQc" secondAttribute="centerY" constant="-20" id="QT4-pK-2gc"/>
+                        <constraint firstItem="WvS-FN-ccV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="VPW-Nd-Xdd"/>
                         <constraint firstItem="DkS-qa-WJM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="W6l-H7-Xmq"/>
+                        <constraint firstAttribute="trailing" secondItem="WvS-FN-ccV" secondAttribute="trailing" id="XGC-Fq-jdx"/>
                         <constraint firstAttribute="bottom" secondItem="sgX-zE-pxU" secondAttribute="bottom" id="atG-e2-glE"/>
                         <constraint firstItem="7iZ-dz-rYx" firstAttribute="width" secondItem="I5w-iF-sX0" secondAttribute="width" id="gjv-ja-Jyo"/>
+                        <constraint firstAttribute="bottom" secondItem="WvS-FN-ccV" secondAttribute="bottom" id="js3-eT-7Lc"/>
                         <constraint firstAttribute="centerX" secondItem="9jX-2G-t41" secondAttribute="centerX" id="kEO-SO-SZj"/>
                         <constraint firstAttribute="trailing" secondItem="k4I-IR-aQc" secondAttribute="trailing" constant="-100" id="kaF-Ge-d2a"/>
                         <constraint firstAttribute="trailing" secondItem="sgX-zE-pxU" secondAttribute="trailing" id="naO-hd-qWh"/>

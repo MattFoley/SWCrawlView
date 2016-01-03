@@ -20,11 +20,14 @@
 @property NSString *episodeTitleText;
 @property NSString *bodyText;
 
+@property UIFont *introFont;
 @property UIFont *logoFont;
 @property UIFont *episodeTitleFont;
 @property UIFont *episodeNumberFont;
 @property UIFont *bodyFont;
 
+@property UIColor *introTextColor;
+@property UIColor *introBackgroundColor;
 @property UIColor *logoStrokeColor;
 @property UIColor *episodeTitleColor;
 @property UIColor *episodeNumberColor;

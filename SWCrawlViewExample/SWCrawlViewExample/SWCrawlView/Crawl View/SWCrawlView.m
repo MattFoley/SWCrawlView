@@ -22,18 +22,19 @@ const CGFloat logoStrokeSizeForFontPointSizeMultiplier = .165;
 @property (weak) IBOutlet UIView *xibView;
 @property (weak) IBOutlet UIView *screenSizeScaleView;
 
+@property (weak) IBOutlet UIView *introView;
+@property (weak) IBOutlet UILabel *introLabel;
+
 @property (weak) IBOutlet UIImageView *maskImageView;
 @property (weak) IBOutlet UIScrollView *scrollView;
 @property (weak) IBOutlet UIScrollView *controlView;
 
 @property (weak) IBOutlet UILabel *crawlTextView;
 @property (weak) IBOutlet NSLayoutConstraint *crawlTextTopSpacingConstraint;
-@property (weak) IBOutlet NSLayoutConstraint *crawlTextBottomSpacingConstraint;
 
 @property (weak) IBOutlet SWStrokedLogoLabel *logoLabel;
 @property (weak) IBOutlet NSLayoutConstraint *logoWidthConstraint;
 @property (weak) IBOutlet NSLayoutConstraint *logoHeightConstraint;
-@property (weak) IBOutlet UILabel *titleLabel;
 
 @property (readwrite) BOOL isAnimating;
 
@@ -68,17 +69,7 @@ const CGFloat logoStrokeSizeForFontPointSizeMultiplier = .165;
 
 - (void)sharedInit
 {
-    _crawl = [SWCrawl new];
-
-    _crawl.logoStrokeColor = [SWConstants starWarsLogoColor];
-    _crawl.episodeNumberColor = [SWConstants crawlTextColor];
-    _crawl.episodeTitleColor = [SWConstants crawlTextColor];
-    _crawl.bodyColor = [SWConstants crawlTextColor];
-
-    _crawl.logoFont = [SWConstants starWarsLogoFont:UIInterfaceIdiomIsPad() ? 140 : 48];
-    _crawl.episodeNumberFont = [SWConstants episodeNumberFont:20];
-    _crawl.episodeTitleFont = [SWConstants episodeTitleFont:40];
-    _crawl.bodyFont = [SWConstants bodyTextFont:20];
+    _crawl = [SWCrawl defaultCrawl];
 
     [self unwrapNib];
 
@@ -113,6 +104,11 @@ const CGFloat logoStrokeSizeForFontPointSizeMultiplier = .165;
 
 - (void)updateTextViaCrawl:(SWCrawl *)crawl
 {
+    [self setIntroText:crawl.introText];
+    [self setIntroFont:crawl.introFont];
+    [self setIntroTextColor:crawl.introTextColor];
+    [self setIntroBackgroundColor:crawl.introBackgroundColor];
+
     [self setLogoText:crawl.logoText];
     [self setLogoFont:crawl.logoFont];
     [self setLogoStrokeColor:crawl.logoStrokeColor];
@@ -142,6 +138,7 @@ const CGFloat logoStrokeSizeForFontPointSizeMultiplier = .165;
 
 - (void)updateCrawlingText
 {
+    [self updateIntroView];
     [self.crawlTextView setAttributedText:[self composedCrawlString]];
 
     [self setNeedsUpdateConstraints];
@@ -150,7 +147,33 @@ const CGFloat logoStrokeSizeForFontPointSizeMultiplier = .165;
     [self scrollViewDidScroll:self.scrollView];
 }
 
+- (void)updateIntroView
+{
+    [self.introLabel setText:self.crawl.introText];
+    [self.introLabel setTextColor:self.crawl.introTextColor];
+    [self.introLabel setFont:self.crawl.introFont];
+    [self.introView setBackgroundColor:self.crawl.introBackgroundColor];
+}
+
 #pragma mark Setters
+
+- (void)setIntroTextColor:(UIColor *)introTextColor
+{
+    self.crawl.introTextColor = introTextColor;
+    [self updateCrawlingText];
+}
+
+- (void)setIntroText:(NSString *)introText
+{
+    self.crawl.introText = introText;
+    [self updateCrawlingText];
+}
+
+- (void)setIntroFont:(UIFont *)introFont
+{
+    self.crawl.introFont = introFont;
+    [self updateCrawlingText];
+}
 
 - (void)setEpisodeNumberText:(NSString *)numberText
 {
@@ -265,8 +288,10 @@ const CGFloat logoStrokeSizeForFontPointSizeMultiplier = .165;
 {
     if (!self.isAnimating) {
         CGFloat distanceFromVisible = (scrollView.contentOffset.y * 2) + CGRectGetHeight(self.frame);
+        NSLog(@"distanceFromVisible %f", distanceFromVisible);
         CGFloat logoScaleTransformValue = (1.0 - (distanceFromVisible / self.crawlTextTopSpacingConstraint.constant)) *
         [self logoScaleForScreenSize];
+        NSLog(@"logoScaleTransform %f", logoScaleTransformValue);
 
         [self.logoLabel setHidden:(logoScaleTransformValue <= 0)];
 
@@ -395,9 +420,9 @@ static int kObservingContentOffsetChangesContext;
 {
     CGFloat scaleSize = 1;
     if (UIInterfaceIdiomIsPad()) {
-        scaleSize = 1.4;
+        scaleSize = 1.8;
     } else {
-        scaleSize = 1;
+        scaleSize = 1.4;
     }
 
     return scaleSize;

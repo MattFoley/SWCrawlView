@@ -13,6 +13,16 @@
 @interface SWCrawlView : UIView
 
 #pragma mark Text Customization
+
+/**
+ *  e.g.:
+ *               A long time ago, in a galaxy far,
+ *               far away...
+ *
+ *  @param introText Use new lines, it will not line break automatically. Will respect introTextColor/Font, will always sit on black background centered on screen.
+ */
+- (void)setIntroText:(NSString *)introText;
+
 /**
  *  e.g.:
  *               STAR
@@ -78,17 +88,21 @@
 #pragma mark Font/Color Customization
 
 /**
- *  See above text comments for descriptions of each value in the crawl. Setting any of these will update the  force a redraw on the crawl view.
+ *  See above text comments for descriptions of each value in the crawl. Setting any of these will update and force a redraw on the crawl view.
  */
+@property (nonatomic) UIFont *introFont;
 @property (nonatomic) UIFont *logoFont;
 @property (nonatomic) UIFont *episodeTitleFont;
 @property (nonatomic) UIFont *episodeNumberFont;
 @property (nonatomic) UIFont *bodyFont;
 
+@property (nonatomic) UIColor *introTextColor;
 @property (nonatomic) UIColor *logoStrokeColor;
 @property (nonatomic) UIColor *episodeTitleColor;
 @property (nonatomic) UIColor *episodeNumberColor;
 @property (nonatomic) UIColor *bodyColor;
+
+@property (nonatomic) UIColor *introBackgroundColor;
 
 @property (readonly) BOOL isAnimating;
 

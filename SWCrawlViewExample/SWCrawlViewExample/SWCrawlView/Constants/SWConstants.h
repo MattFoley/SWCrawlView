@@ -20,11 +20,16 @@
 
 @interface SWConstants : NSObject
 
-UIColor* UIColorFromRGB(unsigned int rgbValue) ;
+UIColor* UIColorFromRGB(unsigned int rgbValue);
++ (BOOL)color:(UIColor *)color1 matchesColor:(UIColor *)color2;
+
++ (UIColor *)randomSaberColor;
++ (NSArray *)randomSaberColorList;
 
 + (UIColor *)starWarsLogoColor;
 + (UIFont *)starWarsLogoFont:(NSInteger)size;
 
++ (UIColor *)introBackgroundColor;
 + (UIColor *)introTextColor;
 + (UIFont *)introTextFont:(NSInteger)size;
 
