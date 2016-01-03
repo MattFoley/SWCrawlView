@@ -14,8 +14,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SWCrawlView">
             <connections>
                 <outlet property="controlView" destination="vm4-Zd-iP0" id="I88-t2-FkP"/>
+                <outlet property="crawlTextBottomSpacingConstraint" destination="JkI-JD-58J" id="4us-ZK-TTh"/>
                 <outlet property="crawlTextTopSpacingConstraint" destination="gHn-yG-gsS" id="Isq-mZ-MH9"/>
                 <outlet property="crawlTextView" destination="7iZ-dz-rYx" id="sZf-eF-s23"/>
+                <outlet property="introLabel" destination="EWJ-jK-RH0" id="Lag-eL-V4p"/>
+                <outlet property="introView" destination="WvS-FN-ccV" id="mMA-Tr-LFX"/>
                 <outlet property="logoHeightConstraint" destination="gm3-SA-eIR" id="Ybm-cy-HCd"/>
                 <outlet property="logoLabel" destination="k4I-IR-aQc" id="KDR-Wj-eEI"/>
                 <outlet property="logoWidthConstraint" destination="9qs-6M-Opa" id="g9X-Wa-Qv9"/>
@@ -33,22 +36,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB" userLabel="Scalable Crawl View">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WvS-FN-ccV">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWJ-jK-RH0">
-                                    <rect key="frame" x="279" y="290" width="42" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="EWJ-jK-RH0" firstAttribute="centerX" secondItem="WvS-FN-ccV" secondAttribute="centerX" id="XwH-rI-z8K"/>
-                                <constraint firstItem="EWJ-jK-RH0" firstAttribute="centerY" secondItem="WvS-FN-ccV" secondAttribute="centerY" id="kRA-In-myn"/>
-                            </constraints>
-                        </view>
                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sgX-zE-pxU" userLabel="Stopper View (For Z Layering)">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         </imageView>
@@ -63,7 +50,7 @@
                             <rect key="frame" x="163" y="-600" width="274" height="1200"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iZ-dz-rYx" userLabel="Crawl Body View">
-                                    <rect key="frame" x="0.0" y="1400" width="274" height="20.5"/>
+                                    <rect key="frame" x="0.0" y="2600" width="274" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -74,7 +61,7 @@
                                 <constraint firstAttribute="trailing" secondItem="7iZ-dz-rYx" secondAttribute="trailing" id="9o3-qB-cVT"/>
                                 <constraint firstAttribute="bottom" secondItem="7iZ-dz-rYx" secondAttribute="bottom" constant="200" id="JkI-JD-58J"/>
                                 <constraint firstItem="7iZ-dz-rYx" firstAttribute="leading" secondItem="9jX-2G-t41" secondAttribute="leading" id="NtD-x7-WRy"/>
-                                <constraint firstItem="7iZ-dz-rYx" firstAttribute="top" secondItem="9jX-2G-t41" secondAttribute="top" constant="1400" id="gHn-yG-gsS"/>
+                                <constraint firstItem="7iZ-dz-rYx" firstAttribute="top" secondItem="9jX-2G-t41" secondAttribute="top" constant="2600" id="gHn-yG-gsS"/>
                                 <constraint firstAttribute="width" constant="274" id="tGE-f9-Ysm"/>
                             </constraints>
                             <connections>
@@ -116,17 +103,30 @@ WARS</string>
                                 </mask>
                             </variation>
                         </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WvS-FN-ccV" userLabel="Intro View">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWJ-jK-RH0">
+                                    <rect key="frame" x="279" y="290.5" width="42" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="EWJ-jK-RH0" firstAttribute="centerX" secondItem="WvS-FN-ccV" secondAttribute="centerX" id="XwH-rI-z8K"/>
+                                <constraint firstItem="EWJ-jK-RH0" firstAttribute="centerY" secondItem="WvS-FN-ccV" secondAttribute="centerY" id="kRA-In-myn"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="k4I-IR-aQc" secondAttribute="bottom" constant="-100" id="4U6-N0-QJp"/>
                         <constraint firstItem="WvS-FN-ccV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6qz-uf-FUw"/>
                         <constraint firstItem="I5w-iF-sX0" firstAttribute="centerX" secondItem="9jX-2G-t41" secondAttribute="centerX" id="73x-WU-slP"/>
                         <constraint firstItem="sgX-zE-pxU" firstAttribute="height" secondItem="DkS-qa-WJM" secondAttribute="height" multiplier="2:1" id="A24-59-X8T"/>
                         <constraint firstItem="DkS-qa-WJM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="EnI-rY-sEM"/>
-                        <constraint firstAttribute="centerY" secondItem="k4I-IR-aQc" secondAttribute="centerY" constant="-20" id="F4Y-zG-Ot4"/>
                         <constraint firstAttribute="trailing" secondItem="DkS-qa-WJM" secondAttribute="trailing" id="GS1-RX-uBX"/>
-                        <constraint firstItem="k4I-IR-aQc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-120" id="I56-yE-SsA"/>
                         <constraint firstItem="sgX-zE-pxU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="J8v-nz-LZb"/>
                         <constraint firstItem="I5w-iF-sX0" firstAttribute="top" secondItem="9jX-2G-t41" secondAttribute="top" id="Jdc-8g-UCC"/>
                         <constraint firstItem="9jX-2G-t41" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-600" id="K3p-75-VHs"/>
@@ -146,13 +146,6 @@ WARS</string>
                         <constraint firstItem="I5w-iF-sX0" firstAttribute="width" secondItem="9jX-2G-t41" secondAttribute="width" id="yzS-Ku-EpY"/>
                         <constraint firstAttribute="centerX" secondItem="k4I-IR-aQc" secondAttribute="centerX" id="zid-ze-TpI"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="4U6-N0-QJp"/>
-                            <exclude reference="F4Y-zG-Ot4"/>
-                            <exclude reference="I56-yE-SsA"/>
-                        </mask>
-                    </variation>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vm4-Zd-iP0" userLabel="Controller Scrollview">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>

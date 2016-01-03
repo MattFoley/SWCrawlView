@@ -31,6 +31,7 @@ const CGFloat logoStrokeSizeForFontPointSizeMultiplier = .165;
 
 @property (weak) IBOutlet UILabel *crawlTextView;
 @property (weak) IBOutlet NSLayoutConstraint *crawlTextTopSpacingConstraint;
+@property (weak) IBOutlet NSLayoutConstraint *crawlTextBottomSpacingConstraint;
 
 @property (weak) IBOutlet SWStrokedLogoLabel *logoLabel;
 @property (weak) IBOutlet NSLayoutConstraint *logoWidthConstraint;
@@ -149,7 +150,7 @@ const CGFloat logoStrokeSizeForFontPointSizeMultiplier = .165;
 
 - (void)updateIntroView
 {
-    [self.introLabel setText:self.crawl.introText];
+    [self.introLabel setText:[self.crawl.introText stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"]];
     [self.introLabel setTextColor:self.crawl.introTextColor];
     [self.introLabel setFont:self.crawl.introFont];
     [self.introView setBackgroundColor:self.crawl.introBackgroundColor];
@@ -288,11 +289,11 @@ const CGFloat logoStrokeSizeForFontPointSizeMultiplier = .165;
 {
     if (!self.isAnimating) {
         CGFloat distanceFromVisible = (scrollView.contentOffset.y * 2) + CGRectGetHeight(self.frame);
-        NSLog(@"distanceFromVisible %f", distanceFromVisible);
+        distanceFromVisible -= 1400;
+
         CGFloat logoScaleTransformValue = (1.0 - (distanceFromVisible / self.crawlTextTopSpacingConstraint.constant)) *
         [self logoScaleForScreenSize];
-        NSLog(@"logoScaleTransform %f", logoScaleTransformValue);
-
+        [self updateIntroViewForScroll:logoScaleTransformValue];
         [self.logoLabel setHidden:(logoScaleTransformValue <= 0)];
 
         if (logoScaleTransformValue > 0) {
@@ -302,6 +303,16 @@ const CGFloat logoStrokeSizeForFontPointSizeMultiplier = .165;
             [self.logoLabel setTransform:scaleTransform];
         }
     }
+}
+
+- (void)updateIntroViewForScroll:(CGFloat)logoScaleTransform
+{
+    CGFloat yScroll = self.scrollView.contentOffset.y;
+    CGFloat introLabelAlpha = (yScroll + 100 / 50.0);
+    CGFloat introViewAlpha = (yScroll < 400) ? 1.0 : 1.0 - ((yScroll - 400.0) / 250.0);
+    [self.introLabel setAlpha:introLabelAlpha];
+    [self.introView setAlpha:introViewAlpha];
+    [self.logoLabel setAlpha:(introViewAlpha > -.7 ? 0.0 : 1.0)];
 }
 
 static int kObservingContentSizeChangesContext;
@@ -376,10 +387,10 @@ static int kObservingContentOffsetChangesContext;
     CATransform3D rotationAndPerspectiveTransform = CATransform3DIdentity;
     rotationAndPerspectiveTransform.m34 = 1.0 / -550;
     rotationAndPerspectiveTransform = CATransform3DRotate(rotationAndPerspectiveTransform,
-                                                          80.0f * M_PI / 165.0f, 1.0f, 0.0f, 0.0f);
+                                                          80.0f * M_PI / 160.0f, 1.0f, 0.0f, 0.0f);
     rotationAndPerspectiveTransform = CATransform3DScale(rotationAndPerspectiveTransform, [self crawlScaleforScreenSize],
                                                          [self crawlScaleforScreenSize], 1);
-    rotationAndPerspectiveTransform = CATransform3DTranslate(rotationAndPerspectiveTransform, 0, 0, -250);
+    rotationAndPerspectiveTransform = CATransform3DTranslate(rotationAndPerspectiveTransform, 0, 0, -480);
 
     CABasicAnimation *transformAnimation = [CABasicAnimation animationWithKeyPath: @"transform"];
     transformAnimation.fromValue = [NSValue valueWithCATransform3D:[((CALayer *)self.scrollView.layer.presentationLayer) transform]];
@@ -388,8 +399,11 @@ static int kObservingContentOffsetChangesContext;
     [self.scrollView.layer addAnimation:transformAnimation forKey:@"transform"];
     [self.scrollView.layer setTransform:rotationAndPerspectiveTransform];
 
+    [self.crawlTextBottomSpacingConstraint setConstant:900];
+
     [self.logoLabel.layer setZPosition:1000];
     [self.maskImageView.layer setZPosition:1000];
+    [self.introView.layer setZPosition:1000];
 }
 
 //This transform more accurately reflects the movie's angle.
@@ -401,7 +415,7 @@ static int kObservingContentOffsetChangesContext;
                                                           80.0f * M_PI / 155.0f, 1.0f, 0.0f, 0.0f);
     rotationAndPerspectiveTransform = CATransform3DScale(rotationAndPerspectiveTransform, [self crawlScaleforScreenSize],
                                                          [self crawlScaleforScreenSize], 1);
-    rotationAndPerspectiveTransform = CATransform3DTranslate(rotationAndPerspectiveTransform, 0, 0, -250);
+    rotationAndPerspectiveTransform = CATransform3DTranslate(rotationAndPerspectiveTransform, 0, 0, -325);
 
     CABasicAnimation *transformAnimation = [CABasicAnimation animationWithKeyPath: @"transform"];
     transformAnimation.fromValue = [NSValue valueWithCATransform3D:[((CALayer *)self.scrollView.layer.presentationLayer) transform]];
@@ -410,8 +424,11 @@ static int kObservingContentOffsetChangesContext;
     [self.scrollView.layer addAnimation:transformAnimation forKey:@"transform"];
     [self.scrollView.layer setTransform:rotationAndPerspectiveTransform];
 
+    [self.crawlTextBottomSpacingConstraint setConstant:400];
+
     [self.logoLabel.layer setZPosition:1000];
     [self.maskImageView.layer setZPosition:1000];
+    [self.introView.layer setZPosition:1000];
 }
 
 #pragma mark Device Specific Tweaks
@@ -420,9 +437,9 @@ static int kObservingContentOffsetChangesContext;
 {
     CGFloat scaleSize = 1;
     if (UIInterfaceIdiomIsPad()) {
-        scaleSize = 1.8;
+        scaleSize = 2.0;
     } else {
-        scaleSize = 1.4;
+        scaleSize = 1.8;
     }
 
     return scaleSize;
@@ -465,10 +482,17 @@ static int kObservingContentOffsetChangesContext;
         }];
     }
 
+    [self.logoLabel setAlpha:1];
+
+    [UIView animateWithDuration:.2 animations:^{
+        [self.introView setAlpha:0];
+    }];
+
     [UIView animateWithDuration:duration
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseIn
                      animations:^{
+                         [self.introView setAlpha:0];
                          [self.controlView setContentOffset:CGPointMake(0, (self.controlView.contentSize.height))];
                      } completion:^(BOOL finished) {
                          if (completion) {
