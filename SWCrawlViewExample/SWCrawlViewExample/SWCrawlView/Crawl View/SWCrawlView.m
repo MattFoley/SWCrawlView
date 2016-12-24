@@ -368,9 +368,13 @@ static int kObservingContentOffsetChangesContext;
 
 - (void)orientationDidChange:(id)sender
 {
+#ifdef SW_MESSAGES
+    BOOL isLandscape = self.frame.size.width > self.frame.size.height;
+#else
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-
-    if (UIInterfaceOrientationIsLandscape(orientation)) {
+    BOOL isLandscape = UIInterfaceOrientationIsLandscape(orientation);
+#endif
+    if (isLandscape) {
         [self setupTransformsForLandscape];
     } else {
         [self setupTranformsForPortrait];
@@ -448,8 +452,14 @@ static int kObservingContentOffsetChangesContext;
 - (CGFloat)logoScaleForScreenSize
 {
     CGFloat scaleSize;
+#ifdef SW_MESSAGES
+    BOOL isLandscape = self.frame.size.width > self.frame.size.height;
+#else
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    if (UIInterfaceOrientationIsLandscape(orientation)) {
+    BOOL isLandscape = UIInterfaceOrientationIsLandscape(orientation);
+#endif
+
+    if (isLandscape) {
         scaleSize = UIInterfaceIdiomIsPad() ? 2.0 : 2.0;
     } else {
         scaleSize = UIInterfaceIdiomIsPad() ? 3.0 : 2.5;
