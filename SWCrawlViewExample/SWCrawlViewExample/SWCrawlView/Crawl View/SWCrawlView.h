@@ -110,4 +110,7 @@
 - (void)scrollOutWithDuration:(CGFloat)duration
                    completion:(void(^)(void))completion;
 
+- (void)prepareForIntroTextFadeIn;
+- (void)animateIntroTextFadeIn:(BOOL)shouldAnimate;
+
 @end

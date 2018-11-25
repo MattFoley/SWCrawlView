@@ -22,6 +22,7 @@ const CGFloat logoStrokeSizeForFontPointSizeMultiplier = .165;
 @property (weak) IBOutlet UIView *xibView;
 @property (weak) IBOutlet UIView *screenSizeScaleView;
 
+@property (weak) IBOutlet UIView *introFadeInCoverView;
 @property (weak) IBOutlet UIView *introView;
 @property (weak) IBOutlet UILabel *introLabel;
 
@@ -283,6 +284,29 @@ const CGFloat logoStrokeSizeForFontPointSizeMultiplier = .165;
     }
 }
 
+#pragma mark Intro Fade In
+
+- (void)prepareForIntroTextFadeIn
+{
+    [self.introLabel setAlpha:0.0f];
+    [self.introFadeInCoverView setAlpha:1.0f];
+    self.introView.alpha = 0;
+}
+
+- (void)animateIntroTextFadeIn:(BOOL)shouldAnimate
+{
+    NSLog(@"introView alpha: %f", self.introView.alpha);
+    [self.introLabel setAlpha:1.0f];
+    [self.introView setAlpha:0.0f];
+    [UIView animateWithDuration:3.0 animations:^{
+        NSLog(@"fade in text");
+        [self.introView setAlpha:1.0f];
+    } completion:^(BOOL finished) {
+        [self.introFadeInCoverView setAlpha:0.0f];
+        NSLog(@"fade in text done");
+    }];
+}
+
 #pragma mark Scroll Handling
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -307,10 +331,12 @@ const CGFloat logoStrokeSizeForFontPointSizeMultiplier = .165;
 
 - (void)updateIntroViewForScroll:(CGFloat)logoScaleTransform
 {
+    
     CGFloat yScroll = self.scrollView.contentOffset.y;
     CGFloat introLabelAlpha = (yScroll + 100 / 50.0);
     CGFloat introViewAlpha = (yScroll < 400) ? 1.0 : 1.0 - ((yScroll - 400.0) / 250.0);
     [self.introLabel setAlpha:introLabelAlpha];
+    NSLog(@"scroll alpha update: %f", introViewAlpha);
     [self.introView setAlpha:introViewAlpha];
     [self.logoLabel setAlpha:(introViewAlpha > -.7 ? 0.0 : 1.0)];
 }
@@ -407,6 +433,7 @@ static int kObservingContentOffsetChangesContext;
 
     [self.logoLabel.layer setZPosition:1000];
     [self.maskImageView.layer setZPosition:1000];
+    [self.introFadeInCoverView.layer setZPosition:1000];
     [self.introView.layer setZPosition:1000];
 }
 
@@ -432,6 +459,7 @@ static int kObservingContentOffsetChangesContext;
 
     [self.logoLabel.layer setZPosition:1000];
     [self.maskImageView.layer setZPosition:1000];
+    [self.introFadeInCoverView.layer setZPosition:1000];
     [self.introView.layer setZPosition:1000];
 }
 
@@ -472,6 +500,7 @@ static int kObservingContentOffsetChangesContext;
     [UIView animateWithDuration:1.0 animations:^{
         [self.scrollView setAlpha:1];
         [self.logoLabel setAlpha:1];
+    } completion:^(BOOL finished) {
         [self.controlView setContentOffset:CGPointMake(0, 0)];
     }];
 }
@@ -494,7 +523,7 @@ static int kObservingContentOffsetChangesContext;
 
     [self.logoLabel setAlpha:1];
 
-    [UIView animateWithDuration:.2 animations:^{
+    [UIView animateWithDuration:duration ? 0.2f : 0.0f animations:^{
         [self.introView setAlpha:0];
     }];
 

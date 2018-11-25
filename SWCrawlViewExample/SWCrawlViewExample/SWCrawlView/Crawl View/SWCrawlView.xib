@@ -1,14 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Starjedi.ttf">
+        <array key="Starjedi.ttf">
             <string>StarJedi</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SWCrawlView">
@@ -17,6 +20,7 @@
                 <outlet property="crawlTextBottomSpacingConstraint" destination="JkI-JD-58J" id="4us-ZK-TTh"/>
                 <outlet property="crawlTextTopSpacingConstraint" destination="gHn-yG-gsS" id="Isq-mZ-MH9"/>
                 <outlet property="crawlTextView" destination="7iZ-dz-rYx" id="sZf-eF-s23"/>
+                <outlet property="introFadeInCoverView" destination="mxI-bi-GBi" id="Lby-RD-7Hq"/>
                 <outlet property="introLabel" destination="EWJ-jK-RH0" id="Lag-eL-V4p"/>
                 <outlet property="introView" destination="WvS-FN-ccV" id="mMA-Tr-LFX"/>
                 <outlet property="logoHeightConstraint" destination="gm3-SA-eIR" id="Ybm-cy-HCd"/>
@@ -30,33 +34,37 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="dMV-Im-dkF">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="starBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="qcJ-vl-bSG" userLabel="Stopper View (For Z Layering)">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB" userLabel="Scalable Crawl View">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sgX-zE-pxU" userLabel="Stopper View (For Z Layering)">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sgX-zE-pxU" userLabel="Stopper View (For Z Layering)">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I5w-iF-sX0" userLabel="Anchor View for Body Text Width">
-                            <rect key="frame" x="163" y="-600" width="274" height="1"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <rect key="frame" x="50.5" y="-600" width="274" height="1"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="hI4-zz-Fgw"/>
                             </constraints>
                         </view>
                         <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9jX-2G-t41" userLabel="Scrolling Crawl View">
-                            <rect key="frame" x="163" y="-600" width="274" height="1200"/>
+                            <rect key="frame" x="50.5" y="-600" width="274" height="1267"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iZ-dz-rYx" userLabel="Crawl Body View">
                                     <rect key="frame" x="0.0" y="2600" width="274" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="7iZ-dz-rYx" secondAttribute="trailing" id="9o3-qB-cVT"/>
                                 <constraint firstAttribute="bottom" secondItem="7iZ-dz-rYx" secondAttribute="bottom" constant="200" id="JkI-JD-58J"/>
@@ -69,7 +77,7 @@
                             </connections>
                         </scrollView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mask.png" translatesAutoresizingMaskIntoConstraints="NO" id="DkS-qa-WJM" userLabel="Mask View">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="333.5"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="736" id="5vF-Nn-yZw"/>
                             </constraints>
@@ -80,7 +88,7 @@
                             </variation>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000007" translatesAutoresizingMaskIntoConstraints="NO" id="k4I-IR-aQc" userLabel="Logo Text" customClass="SWStrokedLogoLabel">
-                            <rect key="frame" x="-100" y="-90" width="800" height="820"/>
+                            <rect key="frame" x="-100" y="-56.5" width="575" height="820"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="600" id="9qs-6M-Opa"/>
                                 <constraint firstAttribute="height" constant="500" id="gm3-SA-eIR"/>
@@ -103,27 +111,32 @@ WARS</string>
                                 </mask>
                             </variation>
                         </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxI-bi-GBi" userLabel="introFadeInCoverView">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WvS-FN-ccV" userLabel="Intro View">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWJ-jK-RH0">
-                                    <rect key="frame" x="279" y="290.5" width="42" height="20.5"/>
+                                    <rect key="frame" x="166.5" y="323.5" width="42" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="EWJ-jK-RH0" firstAttribute="centerX" secondItem="WvS-FN-ccV" secondAttribute="centerX" id="XwH-rI-z8K"/>
                                 <constraint firstItem="EWJ-jK-RH0" firstAttribute="centerY" secondItem="WvS-FN-ccV" secondAttribute="centerY" id="kRA-In-myn"/>
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="WvS-FN-ccV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6qz-uf-FUw"/>
                         <constraint firstItem="I5w-iF-sX0" firstAttribute="centerX" secondItem="9jX-2G-t41" secondAttribute="centerX" id="73x-WU-slP"/>
+                        <constraint firstAttribute="trailing" secondItem="mxI-bi-GBi" secondAttribute="trailing" id="9BQ-Vz-fkj"/>
                         <constraint firstItem="sgX-zE-pxU" firstAttribute="height" secondItem="DkS-qa-WJM" secondAttribute="height" multiplier="2:1" id="A24-59-X8T"/>
                         <constraint firstItem="DkS-qa-WJM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="EnI-rY-sEM"/>
                         <constraint firstAttribute="trailing" secondItem="DkS-qa-WJM" secondAttribute="trailing" id="GS1-RX-uBX"/>
@@ -137,7 +150,10 @@ WARS</string>
                         <constraint firstItem="DkS-qa-WJM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="W6l-H7-Xmq"/>
                         <constraint firstAttribute="trailing" secondItem="WvS-FN-ccV" secondAttribute="trailing" id="XGC-Fq-jdx"/>
                         <constraint firstAttribute="bottom" secondItem="sgX-zE-pxU" secondAttribute="bottom" id="atG-e2-glE"/>
+                        <constraint firstItem="mxI-bi-GBi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="e0o-dk-f9x"/>
+                        <constraint firstAttribute="bottom" secondItem="mxI-bi-GBi" secondAttribute="bottom" id="eSh-5O-mZs"/>
                         <constraint firstItem="7iZ-dz-rYx" firstAttribute="width" secondItem="I5w-iF-sX0" secondAttribute="width" id="gjv-ja-Jyo"/>
+                        <constraint firstItem="mxI-bi-GBi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jnW-zj-dru"/>
                         <constraint firstAttribute="bottom" secondItem="WvS-FN-ccV" secondAttribute="bottom" id="js3-eT-7Lc"/>
                         <constraint firstAttribute="centerX" secondItem="9jX-2G-t41" secondAttribute="centerX" id="kEO-SO-SZj"/>
                         <constraint firstAttribute="trailing" secondItem="k4I-IR-aQc" secondAttribute="trailing" constant="-100" id="kaF-Ge-d2a"/>
@@ -148,10 +164,10 @@ WARS</string>
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vm4-Zd-iP0" userLabel="Controller Scrollview">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="iN0-l3-epB" firstAttribute="leading" secondItem="dMV-Im-dkF" secondAttribute="leading" id="7S1-zk-BeA"/>
                 <constraint firstAttribute="trailing" secondItem="vm4-Zd-iP0" secondAttribute="trailing" id="Cvb-Mo-HEi"/>
@@ -166,5 +182,6 @@ WARS</string>
     </objects>
     <resources>
         <image name="mask.png" width="768" height="1024"/>
+        <image name="starBg.png" width="1024" height="768"/>
     </resources>
 </document>
